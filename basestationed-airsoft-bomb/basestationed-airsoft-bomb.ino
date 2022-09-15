@@ -11,7 +11,7 @@
 #define RST_PIN         9           
 #define SS_PIN          10 
 
-const uint8_t SEG_DONE[] = {
+  const uint8_t SEG_DONE[] = {
 	SEG_B | SEG_C | SEG_D | SEG_E | SEG_G,           // d
 	SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F,   // O
 	SEG_C | SEG_E | SEG_G,                           // n
@@ -21,14 +21,18 @@ const uint8_t SEG_DONE[] = {
   const uint8_t SEG_START[] = {
   SEG_G, SEG_G, SEG_G, SEG_G
 	};
- 
-TM1637Display display(CLK, DIO);
 
-int time = 0;
-int viive = 1000; 
-MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
+  TM1637Display display(CLK, DIO);
+
+  int time = 0;
+  int viive = 1000; 
+  MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
  
 void setup(){
+  
+  pinMode(5, INPUT);
+  pinMode(6, INPUT);
+  pinMode(7, INPUT);
 
   display.clear();
   display.setBrightness(4);
@@ -36,10 +40,42 @@ void setup(){
   Serial.begin(9600);                                           // Initialize serial communications with the PC
   SPI.begin();                                                  // Init SPI bus
   mfrc522.PCD_Init(); 
-   
-//tähän tulee dipsien määritelmä aikamuutoksesta
-  time = 100; 
+
+
+    if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == LOW){
+    // pos1
+    time = 100;
+  }
+    if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
+    // pos2
+    time = 100;
+  }
+    if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == LOW){
+    // pos3
+    time = 100;
+  }
+    if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
+    // pos4
+    time = 100;
+  }
+    if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == LOW){
+    // pos5
+    time = 100;
+  }
+      if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == HIGH){
+    // pos6
+    time = 100;
+  }
+    if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == LOW){
+    // pos7
+    time = 100;
+  }
+    if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == HIGH){
+    // pos8
+    time = 100;
+  }
 }
+
 uint8_t buf[10]= {};
 MFRC522::Uid id;
 MFRC522::Uid id2;
@@ -64,6 +100,9 @@ void cpid(MFRC522::Uid *id){
 }
  
 void loop(){
+
+
+
   start:
   display.setSegments(SEG_START);
   MFRC522::MIFARE_Key key;
