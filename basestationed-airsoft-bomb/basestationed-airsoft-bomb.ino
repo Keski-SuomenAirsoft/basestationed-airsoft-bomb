@@ -8,8 +8,8 @@
 #define DIO 3
 
  
-#define RST_PIN         9           
-#define SS_PIN          10 
+#define RST_PIN         9   //MFRC522 pins    
+#define SS_PIN          10  
 
   const uint8_t SEG_DONE[] = {
 	SEG_B | SEG_C | SEG_D | SEG_E | SEG_G,           // d
@@ -24,15 +24,17 @@
 
   TM1637Display display(CLK, DIO);
 
-  int time = 0;
-  int viive = 1000; 
+  int time = 0; // time in seconds that game runs
+  int viive = 850; //time between countdown going down.
+  int buzz = 500; // time that piezo is active
   MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
  
 void setup(){
   
-  pinMode(5, INPUT);
-  pinMode(6, INPUT);
-  pinMode(7, INPUT);
+  pinMode(5, INPUT); //DIP3
+  pinMode(6, INPUT); //DIP2
+  pinMode(7, INPUT); //DIP1
+  pinMode(4, OUTPUT); //PIEZO
 
   display.clear();
   display.setBrightness(4);
@@ -41,39 +43,40 @@ void setup(){
   SPI.begin();                                                  // Init SPI bus
   mfrc522.PCD_Init(); 
 
-
-    if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == LOW){
-    // pos1
-    time = 100;
+            // Add 330 to any time value this is endtime counter that increases numberflow and sound effects speed during last minute of game time
+    if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == LOW){ 
+      // O O O
+    time = 570;  //5 minutes time untill "explosion"
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
-    // pos2
-    time = 100;
+      // I I I 
+    time = 870; //10 minutes time untill "explosion"
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == LOW){
     // pos3
-    time = 100;
+    time = 1170; //15 minutes time untill "explosion"
   }
     if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
     // pos4
-    time = 100;
+    // time = 365;
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == LOW){
     // pos5
-    time = 100;
+    // time = 365;
   }
       if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == HIGH){
     // pos6
-    time = 100;
+    // time = 365;
   }
     if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == LOW){
     // pos7
-    time = 100;
+    // time = 365;
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == HIGH){
     // pos8
-    time = 100;
+    // time = 365;
   }
+   time = 1170; // MUISTA POISTAA!!!!
 }
 
 uint8_t buf[10]= {};
@@ -104,6 +107,8 @@ void loop(){
 
 
   start:
+
+
   display.setSegments(SEG_START);
   MFRC522::MIFARE_Key key;
   for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
@@ -131,15 +136,16 @@ if (time == 0){
   goto end;
 }
 display.setBrightness(7);
+digitalWrite(4, HIGH);
 display.showNumberDec(time, false); 
 delay(viive);
 time --;
-if (time < 90){
-  viive = 100;
-}
-if (time <50){
+tone(4, 800, buzz);
+if (time == 330){ //end timer increases countdown speed aprox one minute
   viive = 50;
+  buzz = 100;
 }
+
 
 
 
@@ -172,7 +178,7 @@ if (time <50){
   }
   Serial.println("CardRemoved");
 
-  delay(500); //change value if you want to read cards faster
+  delay(100); //change value if you want to read cards faster
  
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();
