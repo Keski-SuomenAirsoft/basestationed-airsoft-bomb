@@ -6,3 +6,4 @@ RFID tags (preferable card variation)
 some kind of display ( 7-segment display or 16*2 LCD module)
 Piezo buzzer
 dip switch
+4 M5x45 bolts and nuts
