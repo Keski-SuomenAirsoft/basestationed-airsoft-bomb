@@ -92,7 +92,6 @@ void setup(){
     // I O I
     // time = 365;
   }
-   time = 1170; // FOR TIMER TESTING PURPOSE BEFORE INSTALLING OF DIP SWITCH. REMEMBER TO REMOVE!!!
 }
 
 uint8_t buf[10]= {};
