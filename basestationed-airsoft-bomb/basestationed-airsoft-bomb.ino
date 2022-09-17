@@ -78,7 +78,7 @@ void setup(){
     // I O I
     // time = 365;
   }
-   time = 1170; // FOR TIMER TESTEIN PURPOSE BEFORE INSTALLING OF DIP SWITCH. REMEMBER TO REMOVE!!!
+   time = 1170; // FOR TIMER TESTING PURPOSE BEFORE INSTALLING OF DIP SWITCH. REMEMBER TO REMOVE!!!
 }
 
 uint8_t buf[10]= {};
@@ -142,10 +142,10 @@ digitalWrite(4, HIGH);
 display.showNumberDec(time, false); 
 delay(viive);
 time --;
-tone(5, 800, buzz);
+tone(5, 400, buzz);
 if (time == 330){ //end timer increases countdown speed aprox one minute
   viive = 50;
-  buzz = 100;
+  buzz = 150;
 }
 
 
