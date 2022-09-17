@@ -4,6 +4,20 @@
 #include <TM1637Display.h>
 
 
+//PINLAYOUT
+// D2 - TM1637 CLK
+// D3 - TM1637 DIO
+// D4 - DIP
+// D5 - PIEZO
+// D6 - DIP
+// D7 - DIP
+// D8 - EMPTY
+// D9 - MFRC552 RST
+// D10 - MFRC552 SDA
+// D11 - MFRC552 MOSI
+// D12 - MFRC552 MISO
+// D13 - MFRC552 SCK
+
 
 
 #define CLK 2//pins definitions for TM1637 and can be changed to other ports
