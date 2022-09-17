@@ -15,5 +15,10 @@ Some pointers on construct of this airsoft prop:
 Where are we now.
 * RFID activation and stoping is woking
 * Countdown time is working and timings are nearly accurate ( i have no idea idea why delays are not accurate.)
-* DIP switchs needs some more ideas ( partialy figured out.)
+* DIP switchs needs some more ideas ( partialy figured out.) 
 * Piezo elemeents connection needs to be switched to PWM pin
+
+
+Librareis you need for this are following:
+RFID     https://github.com/miguelbalboa/rfid
+TM1637   https://github.com/avishorp/TM1637
