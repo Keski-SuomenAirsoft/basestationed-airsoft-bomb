@@ -4,6 +4,8 @@
 #include <TM1637Display.h>
 
 
+
+
 #define CLK 2//pins definitions for TM1637 and can be changed to other ports
 #define DIO 3
 
@@ -31,10 +33,10 @@
  
 void setup(){
   
-  pinMode(5, INPUT); //DIP3
+  pinMode(4, INPUT); //DIP3
   pinMode(6, INPUT); //DIP2
   pinMode(7, INPUT); //DIP1
-  pinMode(4, OUTPUT); //PIEZO
+  pinMode(5, OUTPUT); //PIEZO
 
   display.clear();
   display.setBrightness(4);
@@ -44,31 +46,31 @@ void setup(){
   mfrc522.PCD_Init(); 
 
             // Add 330 to any time value this is endtime counter that increases numberflow and sound effects speed during last minute of game time
-    if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == LOW){ 
+    if (digitalRead(4) == LOW && digitalRead(6) == LOW && digitalRead(7) == LOW){ 
       // O O O
     time = 570;  //5 minutes time untill "explosion"
   }
-    if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
+    if (digitalRead(4) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
       // I I I 
     time = 870; //10 minutes time untill "explosion"
   }
-    if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == LOW){
+    if (digitalRead(4) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == LOW){
     // I I O
     time = 1170; //15 minutes time untill "explosion"
   }
-    if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
+    if (digitalRead(4) == LOW && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
     // O I I
     // time = 365;
   }
-    if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == LOW){
+    if (digitalRead(4) == HIGH && digitalRead(6) == LOW && digitalRead(7) == LOW){
     // I O O
     // time = 365;
   }
-      if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == HIGH){
+      if (digitalRead(4) == LOW && digitalRead(6) == LOW && digitalRead(7) == HIGH){
     // O O I
     // time = 365;
   }
-    if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == LOW){
+    if (digitalRead(4) == LOW && digitalRead(6) == HIGH && digitalRead(7) == LOW){
     // O I O
     // time = 365;
   }
@@ -140,7 +142,7 @@ digitalWrite(4, HIGH);
 display.showNumberDec(time, false); 
 delay(viive);
 time --;
-tone(4, 800, buzz);
+tone(5, 800, buzz);
 if (time == 330){ //end timer increases countdown speed aprox one minute
   viive = 50;
   buzz = 100;
