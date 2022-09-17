@@ -53,27 +53,27 @@ void setup(){
     time = 870; //10 minutes time untill "explosion"
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == LOW){
-    // pos3
+    // I I O
     time = 1170; //15 minutes time untill "explosion"
   }
     if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
-    // pos4
+    // O I I
     // time = 365;
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == LOW){
-    // pos5
+    // I O O
     // time = 365;
   }
       if (digitalRead(5) == LOW && digitalRead(6) == LOW && digitalRead(7) == HIGH){
-    // pos6
+    // O O I
     // time = 365;
   }
     if (digitalRead(5) == LOW && digitalRead(6) == HIGH && digitalRead(7) == LOW){
-    // pos7
+    // O I O
     // time = 365;
   }
     if (digitalRead(5) == HIGH && digitalRead(6) == LOW && digitalRead(7) == HIGH){
-    // pos8
+    // I O I
     // time = 365;
   }
    time = 1170; // FOR TIMER TESTEIN PURPOSE BEFORE INSTALLING OF DIP SWITCH. REMEMBER TO REMOVE!!!
