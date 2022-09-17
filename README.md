@@ -20,5 +20,5 @@ Where are we now.
 
 
 Librareis you need for this are following:
-RFID     https://github.com/miguelbalboa/rfid
-TM1637   https://github.com/avishorp/TM1637
+* RFID     https://github.com/miguelbalboa/rfid
+* TM1637   https://github.com/avishorp/TM1637
