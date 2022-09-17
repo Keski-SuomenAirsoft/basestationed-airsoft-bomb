@@ -9,7 +9,7 @@ Some pointers on construct of this airsoft prop:
 
 * Dimensions on base unit are just guideline.
 * Lid and lower part of bomb is intented to secured to each other with 45mm long m5 bolts.
-* 3d model of lid has no holes for out coming components like screen, piezo element or buttons because maker can cut them out or modeel holess to suit your needs.
+
 
 
 Where are we now.
