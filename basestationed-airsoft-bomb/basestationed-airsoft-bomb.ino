@@ -40,16 +40,16 @@
 
   TM1637Display display(CLK, DIO);
 
-  int time = 0; // time in seconds that game runs
+  int time = 900; // time in seconds that game runs
   int viive = 850; //time between countdown going down.
   int buzz = 500; // time that piezo is active
   MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
  
 void setup(){
   
-  pinMode(4, INPUT); //DIP3
-  pinMode(6, INPUT); //DIP2
-  pinMode(7, INPUT); //DIP1
+  pinMode(4, INPUT_PULLUP); //DIP1
+  pinMode(6, INPUT_PULLUP); //DIP2
+  pinMode(7, INPUT_PULLUP); //DIP3
   pinMode(5, OUTPUT); //PIEZO
 
   display.clear();
@@ -63,6 +63,7 @@ void setup(){
     if (digitalRead(4) == LOW && digitalRead(6) == LOW && digitalRead(7) == LOW){ 
       // O O O
     time = 570;  //5 minutes time untill "explosion"
+
   }
     if (digitalRead(4) == HIGH && digitalRead(6) == HIGH && digitalRead(7) == HIGH){
       // I I I 
@@ -92,6 +93,8 @@ void setup(){
     // I O I
     // time = 365;
   }
+  display.showNumberDec(time, false);
+  delay(5000);
 }
 
 uint8_t buf[10]= {};
