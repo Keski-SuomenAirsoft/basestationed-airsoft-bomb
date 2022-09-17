@@ -76,7 +76,7 @@ void setup(){
     // pos8
     // time = 365;
   }
-   time = 1170; // MUISTA POISTAA!!!!
+   time = 1170; // FOR TIMER TESTEIN PURPOSE BEFORE INSTALLING OF DIP SWITCH. REMEMBER TO REMOVE!!!
 }
 
 uint8_t buf[10]= {};
